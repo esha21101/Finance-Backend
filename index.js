@@ -1,9 +1,4 @@
-const express = require("express");
-const app = express();
-
-app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
-});
+const app = require("./src/app");
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
