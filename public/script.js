@@ -9,6 +9,23 @@ async function loadSummary() {
   document.getElementById("balance").innerText = data.netBalance;
 }
 
+async function loadRecords() {
+  const res = await fetch(`${BASE_URL}/records`);
+  const data = await res.json();
+
+  const list = document.getElementById("records");
+  list.innerHTML = "";
+
+  data.forEach(r => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${r.amount} - ${r.category}
+      <button onclick="deleteRecord(${r.id})">❌</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
 async function addRecord() {
   const amount = document.getElementById("amount").value;
   const type = document.getElementById("type").value;
@@ -18,14 +35,24 @@ async function addRecord() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "role": "ADMIN"
+      role: "ADMIN"
     },
     body: JSON.stringify({ amount: Number(amount), type, category })
   });
 
-  alert("Record Added!");
+  loadSummary();
+  loadRecords();
+}
+
+async function deleteRecord(id) {
+  await fetch(`${BASE_URL}/records/${id}`, {
+    method: "DELETE",
+    headers: { role: "ADMIN" }
+  });
+
+  loadRecords();
   loadSummary();
 }
 
-// Load data on page load
 loadSummary();
+loadRecords();

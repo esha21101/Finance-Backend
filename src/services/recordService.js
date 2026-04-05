@@ -15,15 +15,38 @@ const createRecord = (data) => {
     type: data.type,
     category: data.category,
     date: new Date(),
-    note: data.note || "",
+    note: data.note || ""
   };
 
   records.push(record);
   return record;
 };
 
-const getRecords = () => {
-  return records;
+const getRecords = () => records;
+
+const updateRecord = (id, data) => {
+  const record = records.find(r => r.id == id);
+  if (!record) throw new Error("Record not found");
+
+  record.amount = data.amount || record.amount;
+  record.type = data.type || record.type;
+  record.category = data.category || record.category;
+  record.note = data.note || record.note;
+
+  return record;
 };
 
-module.exports = { createRecord, getRecords };
+const deleteRecord = (id) => {
+  const index = records.findIndex(r => r.id == id);
+  if (index === -1) throw new Error("Record not found");
+
+  records.splice(index, 1);
+  return true;
+};
+
+module.exports = {
+  createRecord,
+  getRecords,
+  updateRecord,
+  deleteRecord
+};
