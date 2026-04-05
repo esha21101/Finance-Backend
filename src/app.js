@@ -12,7 +12,14 @@ app.use("/records", recordRoutes);
 app.use("/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
+  res.json({
+    message: "Finance Backend API 🚀",
+    endpoints: {
+      users: "/users",
+      records: "/records",
+      dashboard: "/dashboard/summary"
+    }
+  });
 });
 
 module.exports = app;
