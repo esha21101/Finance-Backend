@@ -1,8 +1,14 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 
 app.use(express.json());
 
+// Serve frontend (UI)
+app.use(express.static(path.join(__dirname, "../public")));
+
+// Routes
 const userRoutes = require("./routes/userRoutes");
 const recordRoutes = require("./routes/recordRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
@@ -10,16 +16,5 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use("/users", userRoutes);
 app.use("/records", recordRoutes);
 app.use("/dashboard", dashboardRoutes);
-
-app.get("/", (req, res) => {
-  res.json({
-    message: "Finance Backend API 🚀",
-    endpoints: {
-      users: "/users",
-      records: "/records",
-      dashboard: "/dashboard/summary"
-    }
-  });
-});
 
 module.exports = app;
