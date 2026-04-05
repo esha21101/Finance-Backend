@@ -4,7 +4,15 @@ A backend system for managing financial records with role-based access control a
 
 ---
 
-🔗 Live API: https://finance-backend-8y12.onrender.com/
+## 🔗 Live API
+
+Base URL:
+https://finance-backend-8y12.onrender.com/
+
+Example endpoints:
+- /users
+- /records
+- /dashboard/summary
 
 ## 🚀 Features
 
