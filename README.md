@@ -9,10 +9,12 @@ A backend system for managing financial records with role-based access control a
 Base URL:
 https://finance-backend-8y12.onrender.com/
 
-Example endpoints:
-- /users
-- /records
-- /dashboard/summary
+Available endpoints:
+- GET /users
+- POST /users (ADMIN only)
+- GET /records
+- POST /records (ADMIN only)
+- GET /dashboard/summary
 
 ## 🚀 Features
 
