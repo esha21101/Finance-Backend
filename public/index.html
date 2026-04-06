@@ -1,24 +1,64 @@
-<div class="card">
-  <h2>📊 Summary</h2>
-  <p>Income: <span id="income"></span></p>
-  <p>Expense: <span id="expense"></span></p>
-  <p>Balance: <span id="balance"></span></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Finance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>💰 Finance Dashboard</h1>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="box income">
+      <h3>Income</h3>
+      <p id="income">0</p>
+    </div>
+
+    <div class="box expense">
+      <h3>Expense</h3>
+      <p id="expense">0</p>
+    </div>
+
+    <div class="box balance">
+      <h3>Balance</h3>
+      <p id="balance">0</p>
+    </div>
+  </div>
+
+  <!-- ADD RECORD -->
+  <div class="card">
+    <h2>Add Record</h2>
+
+    <input id="amount" placeholder="Amount">
+
+    <select id="type">
+      <option value="INCOME">Income</option>
+      <option value="EXPENSE">Expense</option>
+    </select>
+
+    <input id="category" placeholder="Category (Food, Salary, etc)">
+    <input id="note" placeholder="Note (optional)">
+
+    <button onclick="addRecord()">Add Record</button>
+  </div>
+
+ 
+  <div class="card">
+    <h2>Category Breakdown</h2>
+    <ul id="categories"></ul>
+  </div>
+
+  
+  <div class="card">
+    <h2>Recent Activity</h2>
+    <ul id="recent"></ul>
+  </div>
+
 </div>
 
-<div class="card">
-  <h2>➕ Add Record</h2>
-  <input id="amount" placeholder="Amount" />
-  <input id="category" placeholder="Category" />
-
-  <select id="type">
-    <option value="INCOME">Income</option>
-    <option value="EXPENSE">Expense</option>
-  </select>
-
-  <button onclick="addRecord()">Add</button>
-</div>
-
-<div class="card">
-  <h2>📋 Records</h2>
-  <ul id="records"></ul>
-</div>
+<script src="script.js"></script>
+</body>
+</html>

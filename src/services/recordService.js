@@ -11,10 +11,10 @@ const createRecord = (data) => {
 
   const record = {
     id: Date.now(),
-    amount: data.amount,
+    amount: Number(data.amount),
     type: data.type,
     category: data.category,
-    date: new Date(),
+    date: new Date().toISOString(), 
     note: data.note || ""
   };
 
@@ -28,10 +28,10 @@ const updateRecord = (id, data) => {
   const record = records.find(r => r.id == id);
   if (!record) throw new Error("Record not found");
 
-  record.amount = data.amount || record.amount;
-  record.type = data.type || record.type;
-  record.category = data.category || record.category;
-  record.note = data.note || record.note;
+  if (data.amount !== undefined) record.amount = Number(data.amount);
+  if (data.type) record.type = data.type;
+  if (data.category) record.category = data.category;
+  if (data.note !== undefined) record.note = data.note;
 
   return record;
 };
